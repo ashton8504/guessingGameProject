@@ -17,12 +17,16 @@ function checkGuess(num) {
   }
 }
 
-// console.log(checkGuess(23));
-
 function askGuess() {
   rl.question("Enter a guess: ", answer => {
     checkGuess(parseInt(answer));
-    rl.close();
+
+    if (parseInt(answer) === secretNumber) {
+      console.log("You won!");
+      rl.close();
+    } else {
+      askGuess();
+    }
   });
 }
 askGuess(checkGuess());
