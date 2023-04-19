@@ -5,7 +5,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-let secretNumber = randomInRange(1, 10);
+let secretNumber = randomInRange(0, 100);
 
 function randomInRange(min, max) {
   min = Math.ceil(min);
