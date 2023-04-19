@@ -21,7 +21,7 @@ function checkGuess(num) {
 
 function askGuess() {
   rl.question("Enter a guess: ", answer => {
-    checkGuess(answer);
+    checkGuess(parseInt(answer));
     rl.close();
   });
 }
