@@ -19,20 +19,32 @@ function checkGuess(num) {
   } else if (num < secretNumber) {
     console.log("Too low");
   } else if (num === secretNumber) {
-    console.log("Correct");
+    console.log("You Won!");
+    rl.close();
   }
 }
 
 function askGuess() {
   rl.question("Enter a guess: ", answer => {
-    checkGuess(parseInt(answer));
-
-    if (parseInt(answer) === secretNumber) {
-      console.log("You won!");
+    const num = parseInt(answer);
+    checkGuess(num);
+    if (num === secretNumber) {
       rl.close();
     } else {
       askGuess();
     }
   });
 }
-askGuess(checkGuess());
+
+function askRange() {
+  rl.question("Enter a max number: ", maxAnswer => {
+    rl.question("Enter a min number: ", minAnswer => {
+      const rangeString = `I am thinking of a number between ${minAnswer} and ${maxAnswer}...`;
+      console.log(rangeString);
+      secretNumber = randomInRange(parseInt(minAnswer), parseInt(maxAnswer));
+      askGuess();
+    });
+  });
+}
+
+askRange();
